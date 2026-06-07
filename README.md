@@ -6,15 +6,13 @@ A comprehensive, hands-on curriculum to take a junior developer from zero to con
 
 ## How This Curriculum Works
 
-Each lesson is a self-contained folder with five files:
+Each lesson is a self-contained folder:
 
 | File | Purpose | Pushed to GitHub? |
 |------|---------|-------------------|
 | `README.md` | Framing + task description + questions (Normal & Tricky) | ✅ Yes |
 | `ANSWERS.md` | **Student fills this in** — answers + hands-on commands | ✅ Yes |
 | `setup.sh` | Builds a sandbox repo with a realistic/messy scenario | ✅ Yes |
-| `THEORY.md` | Full teaching script for the mentor | ❌ No (gitignored) |
-| `SOLUTION.md` | Worked answers + exact commands | ❌ No (gitignored) |
 
 **For the learner:**
 1. Read the `README.md` for the lesson.
@@ -23,10 +21,6 @@ Each lesson is a self-contained folder with five files:
 4. Commit your answers and open a Pull Request.
 5. GitHub Actions automatically validates your answers. Only passing answers can be merged.
 6. Receive the deeper explanation verbally from your mentor.
-
-She cannot peek at `THEORY.md` or `SOLUTION.md` because they are never published.
-
-**For the mentor:** Use `THEORY.md` to walk her through concepts. Use `SOLUTION.md` to grade her answers or unblock her if she gets stuck. Review PRs when CI passes — or use the CI report to spot exactly where she's struggling.
 
 ---
 
@@ -147,7 +141,7 @@ Within each module, follow the submodule numbering. Within each submodule, follo
 ## File Conventions (Deep Dive)
 
 ### `README.md`
-- **Intro framing** (2–4 sentences): What this lesson practices. No deep theory — that lives in `THEORY.md`.
+- **Intro framing** (2–4 sentences): What this lesson practices.
 - **Setup**: Instructions to run `bash setup.sh` and what state it creates.
 - **Your task**: Step-by-step goal for the sandbox.
 - **❓ Normal question**: Conceptual or "what command…" question.
@@ -168,47 +162,6 @@ Within each module, follow the submodule numbering. Within each submodule, follo
 - Uses `git init`, scripted commits, and `git init --bare` for local remotes.
 - Everything works **offline** — no GitHub account needed until the GitHub-specific modules.
 - Sets `user.name` and `user.email` locally so the sandbox doesn't pollute global Git config.
-
-### `THEORY.md`
-- Your teaching script. Full explanation of the concept.
-- Talking points, analogies, common misconceptions.
-- Not published — use it during live sessions.
-
-### `SOLUTION.md`
-- Exact commands to solve the hands-on task.
-- Worked answers for Normal and Tricky questions.
-- Not published — use it for grading or to unblock the learner.
-
----
-
-## Before Pushing to GitHub
-
-Run these checks to ensure no teaching material leaks:
-
-```bash
-# 1. Verify ignored files are NOT staged
-git add -A && git status
-
-# 2. Verify specific ignore rules
-git check-ignore -v 01-git/06-rebase/rebase-basics/THEORY.md
-
-# 3. The real safety check: zero THEORY or SOLUTION files tracked
-git ls-files | grep -E 'THEORY|SOLUTION'
-# (should return nothing)
-```
-
-Only `README.md` and `setup.sh` should appear in `git ls-files` for lesson directories.
-
----
-
-## Mentor Quick Reference
-
-| If she is stuck on… | Consult… |
-|---------------------|----------|
-| Conceptual understanding | `THEORY.md` in that lesson |
-| Hands-on task | `SOLUTION.md` in that lesson |
-| What order to teach | This README's recommended order |
-| When to unlock advanced lessons | `TEACHING-GUIDE.md` (gitignored) |
 
 ---
 
