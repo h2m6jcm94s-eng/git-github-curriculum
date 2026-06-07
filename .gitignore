@@ -1,0 +1,21 @@
+# Teaching material — never published so the junior can't peek
+THEORY.md
+SOLUTION.md
+TEACHING-GUIDE.md
+
+# Local noise
+.DS_Store
+*.local
+__pycache__/
+*.pyc
+*.pyo
+
+# Scratch dirs created when she runs setup.sh
+**/sandbox/
+**/scratch-*/
+
+# Bare repos created by setup scripts
+**/*.git/
+
+# Validation artifacts
+validation-report.json

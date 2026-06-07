@@ -1,0 +1,302 @@
+# Lesson validation configuration
+# Each key is a lesson path relative to repo root.
+# 'checks' is a list of state-check specs executed after the student's commands.
+
+"01-git/01-foundations/intro-and-config":
+  checks: []
+
+"01-git/01-foundations/the-three-trees":
+  checks: []
+
+"01-git/02-staging-and-commits/staging-basics":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "log_contains", branch: "main", text: "Add notes" }
+
+"01-git/02-staging-and-commits/partial-staging":
+  checks:
+    - { name: "no_uncommitted_changes" }
+
+"01-git/02-staging-and-commits/amend-and-gitignore":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "file_exists", path: ".gitignore" }
+
+"01-git/03-history-and-inspection/reading-history":
+  checks: []
+
+"01-git/03-history-and-inspection/diffing":
+  checks: []
+
+"01-git/03-history-and-inspection/blame":
+  checks: []
+
+"01-git/04-branching-and-merging/branches":
+  checks:
+    - { name: "branch_exists", branch: "feature" }
+    - { name: "no_uncommitted_changes" }
+
+"01-git/04-branching-and-merging/merging":
+  checks:
+    - { name: "branch_exists", branch: "feature" }
+    - { name: "no_uncommitted_changes" }
+    - { name: "log_contains", branch: "main", text: "Merge" }
+
+"01-git/04-branching-and-merging/merge-conflicts":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "log_contains", branch: "main", text: "Merge" }
+
+"01-git/05-undoing-changes/restore-and-reset":
+  checks:
+    - { name: "no_uncommitted_changes" }
+
+"01-git/05-undoing-changes/revert-vs-reset":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "log_contains", branch: "main", text: "Revert" }
+
+"01-git/05-undoing-changes/clean":
+  checks:
+    - { name: "no_uncommitted_changes" }
+
+"01-git/06-rebase/rebase-basics":
+  checks:
+    - { name: "merge_base_is_head", branch: "feature", base: "main" }
+    - { name: "ahead_of", branch: "feature", base: "main", count: 2 }
+
+"01-git/06-rebase/interactive-rebase":
+  checks:
+    - { name: "merge_base_is_head", branch: "feature", base: "main" }
+    - { name: "ahead_of", branch: "feature", base: "main", count: 1 }
+
+"01-git/06-rebase/rebase-onto":
+  checks:
+    - { name: "no_uncommitted_changes" }
+
+"01-git/06-rebase/rebase-conflicts":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "merge_base_is_head", branch: "feature", base: "main" }
+
+"01-git/07-cherry-pick/cherry-pick-basics":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "log_contains", branch: "main", text: "Cherry" }
+
+"01-git/07-cherry-pick/cherry-pick-conflicts":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "log_contains", branch: "main", text: "Cherry" }
+
+"01-git/08-stash/stash-basics":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "stash_count", count: 0 }
+
+"01-git/08-stash/advanced-stash":
+  checks:
+    - { name: "no_uncommitted_changes" }
+
+"01-git/09-reflog-and-recovery/reflog-basics":
+  checks: []
+
+"01-git/09-reflog-and-recovery/recover-lost-work":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "commit_count", branch: "main", count: 5 }
+
+"01-git/09-reflog-and-recovery/undo-a-bad-rebase":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "branch_exists", branch: "feature" }
+
+"01-git/10-advanced/tags":
+  checks:
+    - { name: "tag_exists", tag: "v1.0" }
+
+"01-git/10-advanced/bisect":
+  checks:
+    - { name: "no_uncommitted_changes" }
+
+"01-git/10-advanced/worktree-and-detached-head":
+  checks:
+    - { name: "no_uncommitted_changes" }
+
+# --- 02-github (mostly conceptual) ---
+"02-github/01-repositories/create-a-repo":
+  checks:
+    - { name: "no_uncommitted_changes" }
+
+"02-github/01-repositories/classify-and-describe":
+  checks: []
+
+"02-github/02-forking/fork-a-repo":
+  checks: []
+
+"02-github/03-issues/create-and-triage-issues":
+  checks: []
+
+"02-github/03-issues/issue-templates-and-forms":
+  checks:
+    - { name: "file_exists", path: ".github/ISSUE_TEMPLATE/bug_report.yml" }
+
+"02-github/04-pull-requests/open-a-pr":
+  checks: []
+
+"02-github/04-pull-requests/writing-a-pr-body":
+  checks: []
+
+"02-github/04-pull-requests/reviews-and-suggestions":
+  checks: []
+
+"02-github/04-pull-requests/merge-strategies":
+  checks: []
+
+"02-github/05-github-features/branch-protection":
+  checks: []
+
+"02-github/05-github-features/releases":
+  checks: []
+
+"02-github/05-github-features/dependabot":
+  checks: []
+
+# --- 03-git-and-github ---
+"03-git-and-github/01-remotes/remotes-and-tracking":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "remote_exists", remote: "origin" }
+
+"03-git-and-github/01-remotes/fetch-vs-pull":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "remote_branch_exists", remote_branch: "origin/main" }
+
+"03-git-and-github/01-remotes/push":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "remote_branch_exists", remote_branch: "origin/main" }
+
+"03-git-and-github/02-feature-branch-workflow/end-to-end-workflow":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "branch_exists", branch: "feature" }
+    - { name: "remote_branch_exists", remote_branch: "origin/feature" }
+
+"03-git-and-github/03-fork-and-contribute/fork-to-pr":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "remote_exists", remote: "upstream" }
+
+"03-git-and-github/04-remote-conflicts/rejected-push":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "log_contains", branch: "main", text: "Teammate" }
+
+"03-git-and-github/04-remote-conflicts/diverged-branches":
+  checks:
+    - { name: "no_uncommitted_changes" }
+
+"03-git-and-github/04-remote-conflicts/safe-force-push":
+  checks:
+    - { name: "no_uncommitted_changes" }
+
+"03-git-and-github/05-tricky-situations/committed-to-main":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "branch_exists", branch: "feature" }
+    - { name: "ahead_of", branch: "feature", base: "main", count: 4 }
+
+"03-git-and-github/05-tricky-situations/moving-commits-to-branch":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "branch_exists", branch: "feature" }
+
+"03-git-and-github/05-tricky-situations/rewriting-pushed-history":
+  checks:
+    - { name: "no_uncommitted_changes" }
+
+"03-git-and-github/05-tricky-situations/recover-bad-force-push":
+  checks:
+    - { name: "no_uncommitted_changes" }
+    - { name: "remote_branch_exists", remote_branch: "origin/main" }
+
+# --- 04-github-cli (mostly conceptual) ---
+"04-github-cli/01-setup/gh-auth-and-config":
+  checks: []
+
+"04-github-cli/02-repos/gh-repo-ops":
+  checks: []
+
+"04-github-cli/03-pull-requests/create-and-view":
+  checks: []
+
+"04-github-cli/03-pull-requests/checkout-and-review":
+  checks: []
+
+"04-github-cli/03-pull-requests/merge":
+  checks: []
+
+"04-github-cli/04-issues/gh-issue-ops":
+  checks: []
+
+"04-github-cli/05-advanced/gh-run-release-api":
+  checks: []
+
+# --- 05-ci-cd-and-automation ---
+"05-ci-cd-and-automation/01-actions-fundamentals/first-workflow":
+  checks:
+    - { name: "file_exists", path: ".github/workflows/hello.yml" }
+
+"05-ci-cd-and-automation/01-actions-fundamentals/triggers-and-filters":
+  checks:
+    - { name: "file_exists", path: ".github/workflows/triggered.yml" }
+
+"05-ci-cd-and-automation/01-actions-fundamentals/matrix-and-cache":
+  checks:
+    - { name: "file_exists", path: ".github/workflows/matrix.yml" }
+
+"05-ci-cd-and-automation/02-tests-and-smoke-tests/ci-test-job":
+  checks:
+    - { name: "file_exists", path: ".github/workflows/test.yml" }
+
+"05-ci-cd-and-automation/02-tests-and-smoke-tests/smoke-tests":
+  checks:
+    - { name: "file_exists", path: ".github/workflows/smoke.yml" }
+
+"05-ci-cd-and-automation/02-tests-and-smoke-tests/required-checks":
+  checks: []
+
+"05-ci-cd-and-automation/03-coverage-codecov/codecov-setup":
+  checks:
+    - { name: "file_exists", path: ".github/workflows/coverage.yml" }
+
+"05-ci-cd-and-automation/03-coverage-codecov/coverage-gates-and-badge":
+  checks: []
+
+"05-ci-cd-and-automation/04-ai-review-coderabbit/coderabbit-setup":
+  checks:
+    - { name: "file_exists", path: ".coderabbit.yaml" }
+
+"05-ci-cd-and-automation/04-ai-review-coderabbit/tuning-and-triage":
+  checks: []
+
+"05-ci-cd-and-automation/05-semantic-auto-classification/path-labeler":
+  checks:
+    - { name: "file_exists", path: ".github/labeler.yml" }
+
+"05-ci-cd-and-automation/05-semantic-auto-classification/semantic-issue-pr-classifier":
+  checks: []
+
+"05-ci-cd-and-automation/06-other-tooling/dependabot-and-codeql":
+  checks:
+    - { name: "file_exists", path: ".github/dependabot.yml" }
+
+"05-ci-cd-and-automation/06-other-tooling/codeowners-and-conventional-commits":
+  checks:
+    - { name: "file_exists", path: "CODEOWNERS" }
+
+"05-ci-cd-and-automation/06-other-tooling/reusable-workflows":
+  checks:
+    - { name: "file_exists", path: ".github/workflows/reusable.yml" }
