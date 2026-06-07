@@ -7,6 +7,12 @@ on:
   # Allow manual trigger for debugging
   workflow_dispatch:
 
+# Let the default GITHUB_TOKEN post the results comment on the PR
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
 jobs:
   validate:
     name: Validate Student Answers
